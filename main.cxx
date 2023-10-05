@@ -1,25 +1,29 @@
+#include <cstddef>
+#include <cstdio>
 #include <iostream>
 #include <string>
-int main(int var0, char *var1[]) {
+int main(int argCount, char *argValues[]) {
     printf("%s", "Start");
-    if (var0 == 3) {
+    if (argCount == 3) {
         printf("%s", "if");
-        std::string var2{var1[0]};
-        auto var3{*(var1[1])};
-        auto var4{var2.size()};
-        auto var5{std::atoi(var1[2])};
-        auto var6{0};
-        auto var7{0};
-        std::string var8{var1[1]};
+        std::string executableName{argValues[0]};
+        std::string arg1{argValues[1]};
+        char currentArg1Letter{*(argValues[1])};
+        size_t exeLen{executableName.size()};
+        int arg2{std::atoi(argValues[2])};
+        int sum = 0;
+        int ptr = 0;
         while (true) {
-        var6 += var8[var7++];
-        if (var7 >= static_cast<int>(var8.size())) {
-            break;
+            sum += arg1[ptr++];
+            if (sum >= static_cast<int>(arg1.size())) {
+                break;
+            }
         }
-        }
-        if ((var6 ^ var3 * 3) << (var4 & 0x1f) == var5) {
+        printf("integer %lu\n", (exeLen & 0x1f));
+        if ((sum ^ currentArg1Letter * 3) << (exeLen & 0x1f) == arg2) {
         std::cout << "Correct!" << std::endl;
-        } else {
+        } 
+        else {
         std::cout << "Wrong!" << std::endl;
         }
     }
